@@ -11,6 +11,8 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+base_path = os.getcwd()
+config_path = os.path.join(base_path, "server_info.json")
 
 prefixes = ["m!", "M!"]
 
@@ -21,14 +23,14 @@ async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
 servInfo = {}
-with open("C:\\Users\\MangoPotato\\projects\\MessageBotPy\\server_info.json", "r") as read_file:
+with open(config_path, "r") as read_file:
     servInfo = json.load(read_file)
 
 servMail = servInfo["mail"]
 servNotf = servInfo["notifs"]
 
 def j_dump():
-    with open("C:\\Users\\MangoPotato\\projects\\MessageBotPy\\server_info.json", "w") as write_file:
+    with open(config_path, "w") as write_file:
         json.dump(servInfo, write_file)
 
 def in_server(s_id):
