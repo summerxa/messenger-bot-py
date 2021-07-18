@@ -1,2 +1,3 @@
 .env
 server_info.json
+.gitignore
