@@ -158,7 +158,7 @@ def display_page(g_id, curPage): # shows 5 messages at a time
 async def serv_mail(ctx):
     curPage = 0
     g_id = str(ctx.message.guild.id)
-    nPages = len(servMail[g_id])//5 + min(1,len(servMail[g_id]) % 5) - 1 # number of pages
+    nPages = len(servMail[g_id])//5 + min(1,len(servMail[g_id]) % 5) - 1 # number of pages (zero-indexed)
 
     if not g_id in servMail:
         await ctx.channel.send("Your server has not received mail yet!")
@@ -322,7 +322,7 @@ def display_list(guilds, L, g_id, curPage): # shows a window of 5 servers at a t
 async def serv_list(ctx):
     guilds = bot.guilds
     L = len(guilds)
-    nPages = (L//5 + min(1,L) % 5) - 1 # number of pages
+    nPages = (L//5 + min(1,L % 5)) - 1 # number of pages (zero-indexed)
     curPage = 0
     g_id = ctx.message.guild.id
     
